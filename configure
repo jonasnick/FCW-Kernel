@@ -1,0 +1,12 @@
+#!/bin/bash
+
+tar -xzf test/data/citeseer-preprocessed.tgz -C test/data
+
+curl http://www.cs.umd.edu/~sen/lbc-proj/data/citeseer.tgz > citeseer.tgz
+tar -xzf citeseer.tgz -C data
+rm citeseer.tgz
+
+curl http://www.cs.umd.edu/~sen/lbc-proj/data/cora.tgz > cora.tgz
+tar -xzf cora.tgz -C data
+rm cora.tgz
+
