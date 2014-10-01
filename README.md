@@ -22,7 +22,7 @@ Instead of comparing two walks based on the visited nodes' labels as in CWK, com
 Note that CWK only takes observed nodes into account, whereas FCWK requires features of *all* nodes and the labels of observed nodes.
 In order to achieve that, FCWK takes a feature kernel for the nodes `K_NF` as an additional parameter leading to the following update rule:
 
-![](images/eq1.png)
+<img src="images/eq1.png" height="30">
 
 where `t_max` is the maximum number of steps in a walk, 
 `N` times `n` matrix `P_t` represents
@@ -31,7 +31,8 @@ the probability that a random walk that begins at node `i` ends at node `j` afte
 `P_t` is obtained by multiplying prior probabilities with the transition probability `T`, which
 is the normalized adjacency matrix:
 
-![](images/eq2.png)
+
+<img src="images/eq2.png" height="20">
 
 
 Benchmark
