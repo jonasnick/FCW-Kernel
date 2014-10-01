@@ -1,7 +1,7 @@
 FCW-Kernel
 ===
 This project is a python port of [Coinciding Walk Kernels](https://github.com/rmgarnett/coinciding_walk_kernel) (CWK) [1] and introduces an extension of the model called Feature-CWK (FCWK).
-If you want to jump right into some code see the benchmark.
+If you want to jump right into some code see the [benchmark](http://nbviewer.ipython.org/github/jonasnick/FCW-Kernel/blob/master/benchmark.ipynb).
 
 CW-Kernels deal with the problem of *node classification* (aka link-based classification) in which a set of features and labels for items are given 
 just as in regular classification. In addition, a node classification algorithm accepts a graph of of items and item-item links.
@@ -20,23 +20,24 @@ FCWK
 The FCW-Kernel naturally extends CWK by including node features.
 Instead of comparing two walks based on the visited nodes' labels as in CWK, compare walks based on the similarity of the features of the nodes. 
 Note that CWK only takes observed nodes into account, whereas FCWK requires features of *all* nodes and the labels of observed nodes.
-In order to achieve that, FCWK takes a feature kernel for the nodes ![equation](http://www.sciweavers.org/tex2img.php?eq=K_{NF}&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0) as an additional parameter leading to the following update rule:
+In order to achieve that, FCWK takes a feature kernel for the nodes `K_NF` as an additional parameter leading to the following update rule:
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=K_{\text{FECW}}+%3D+\frac{1}{t_{\text{max}}%2B1}+\sum_{t%3D0}^{t_{\text{max}}}P_t+K_{\text{NF}}+P_t^T&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![](images/eq1.png)
 
-where ![equation](http://www.sciweavers.org/tex2img.php?eq=t_{\text{max}}&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0) is the maximum number of steps in a walk, 
-![equation](P_t+%5Cin+%5Cmathbb%7BR%7D%5E%7Bn%5Ctimes+n%7D) represents
+where `t_max` is the maximum number of steps in a walk, 
+`N` times `n` matrix `P_t` represents
 the probability that a random walk that begins at node `i` ends at node `j` after
 `t` steps. 
 `P_t` is obtained by multiplying prior probabilities with the transition probability `T`, which
 is the normalized adjacency matrix:
-![equation](http://www.sciweavers.org/tex2img.php?eq=P_{t%2B1}+\leftarrow+TP_t&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+
+![](images/eq2.png)
 
 
 Benchmark
 ---
 CWKs combined with the simple FCWK adjustment leads to remarkable results compared to state-of-the-art algorithms on standard datasets.
-The following table shows the accuracy (in percent) of various classifiers using 3-fold cross validation (see ). 
+The following table shows the accuracy (in percent) of various classifiers using 3-fold cross validation (see the [benchmark](http://nbviewer.ipython.org/github/jonasnick/FCW-Kernel/blob/master/benchmark.ipynb)). 
 
 |       -       | citeseer      | cora  |
 | ------------- |:-------------:| -----:|
@@ -78,8 +79,8 @@ Install
 
 Example and Benchmark
 ---
-see [example]()
-If you want to run the example yourself, run `configure` first to download the datasets.
+See the [benchmark](http://nbviewer.ipython.org/github/jonasnick/FCW-Kernel/blob/master/benchmark.ipynb) as an example.
+If you want to run the benchmark yourself, run `configure` first to download the datasets.
 
 Tests
 ---
